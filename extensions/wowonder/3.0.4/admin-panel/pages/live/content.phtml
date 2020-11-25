@@ -1,0 +1,294 @@
+<div class="container-fluid">
+    <div class="block-header">
+        <h2>Settings > Live Settings</h2>
+    </div>
+    <!-- Vertical Layout -->
+    <div class="row">
+        <div class="col-lg-6 col-md-6">
+            <div class="card">
+                <div class="header">
+                    <h2>Live Settings</h2>
+                </div>
+                <div class="body">
+                    <div class="alert alert-success email-settings-alert"></div>
+                    <form class="email-settings" method="POST">
+                        <label for="live_video">Live Video</label>
+                        <div class="form-group">
+                            <input type="radio" name="live_video" id="live_video-enabled" value="1" <?php echo ($wo['config']['live_video'] == 1) ? 'checked': '';?>>
+                            <label for="live_video-enabled">Enabled</label>
+                            <input type="radio" name="live_video" id="live_video-disabled" value="0" <?php echo ($wo['config']['live_video'] == 0) ? 'checked': '';?>>
+                            <label for="live_video-disabled" class="m-l-20">Disabled</label>
+                        </div>
+                        <label for="live_video_save">Save user live streams?</label>
+                        <div class="form-group">
+                            <input type="radio" name="live_video_save" id="live_video_save-enabled" value="1" <?php echo ($wo['config']['live_video_save'] == 1) ? 'checked': '';?>>
+                            <label for="live_video_save-enabled">Enabled</label>
+                            <input type="radio" name="live_video_save" id="live_video_save-disabled" value="0" <?php echo ($wo['config']['live_video_save'] == 0) ? 'checked': '';?>>
+                            <label for="live_video_save-disabled" class="m-l-20">Disabled</label>
+                        </div>
+                        <input type="hidden" name="hash_id" value="<?php echo Wo_CreateSession();?>">
+                        <button type="submit" class="btn btn-primary m-t-15 waves-effect">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-6 col-md-6" style="float: right;">
+            <div class="card">
+                <div class="header">
+                    <h2>Agora Settings</h2>
+                </div>
+                <div class="body">
+                    <div class="alert alert-success agora-settings-alert"></div>
+                    <form class="agora-settings" method="POST">
+                        <label for="agora_live_video">Agora Live Video</label>
+                        <div class="form-group">
+                            <input type="radio" name="agora_live_video" id="agora_live_video-enabled" value="1" <?php echo ($wo['config']['agora_live_video'] == 1) ? 'checked': '';?>>
+                            <label for="agora_live_video-enabled">Enabled</label>
+                            <input type="radio" name="agora_live_video" id="agora_live_video-disabled" value="0" <?php echo ($wo['config']['agora_live_video'] == 0) ? 'checked': '';?>>
+                            <label for="agora_live_video-disabled" class="m-l-20">Disabled</label>
+                        </div>
+                        <div>
+                            To start using this feature, you'll need to create an account in <a href="https://www.agora.io/en/">Agora</a>.
+                        </div>
+                        <br><br>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="text" id="agora_app_id" name="agora_app_id" class="form-control" value="<?php echo $wo['config']['agora_app_id'];?>">
+                                <label class="form-label">App ID</label>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="text" id="agora_customer_id" name="agora_customer_id" class="form-control" value="<?php echo $wo['config']['agora_customer_id'];?>">
+                                <label class="form-label">Customer ID</label>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="text" id="agora_customer_certificate" name="agora_customer_certificate" class="form-control" value="<?php echo $wo['config']['agora_customer_certificate'];?>">
+                                <label class="form-label">Customer Certificate</label>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <label for="amazone_s3_2">Amazon S3 Storage <small> (To Save Live Videos On Amazon)</small></label>
+                        <div class="form-group">
+                            <input type="radio" name="amazone_s3_2" id="amazone_s3_2-enabled" value="1" <?php echo ($wo['config']['amazone_s3_2'] == 1) ? 'checked': '';?>>
+                            <label for="amazone_s3_2-enabled">Enabled</label>
+                            <input type="radio" name="amazone_s3_2" id="amazone_s3_2-disabled" value="0" <?php echo ($wo['config']['amazone_s3_2'] == 0) ? 'checked': '';?>>
+                            <label for="amazone_s3_2-disabled" class="m-l-20">Disabled</label>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="text" id="bucket_name_2" name="bucket_name_2" class="form-control" value="<?php echo $wo['config']['bucket_name_2']?>">
+                                <label class="form-label">Amazon Bucket Name</label>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="text" id="amazone_s3_key_2" name="amazone_s3_key_2" class="form-control" value="<?php echo $wo['config']['amazone_s3_key_2']?>">
+                                <label class="form-label">Amazon S3 Key</label>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="text" id="amazone_s3_s_key_2" name="amazone_s3_s_key_2" class="form-control" value="<?php echo $wo['config']['amazone_s3_s_key_2']?>">
+                                <label class="form-label">Amazon S3 Secret Key</label>
+                            </div>
+                        </div>
+                        <label for="region_2">Amazon S3 bucket Region</label>
+                        <select class="form-control show-tick" id="region_2" name="region_2">
+                          <option value="us-east-1" <?php echo ($wo['config']['region_2'] == 'us-east-1')   ? ' selected' : '';?> >US East (N. Virginia)</option>
+                          <option value="us-east-2" <?php echo ($wo['config']['region_2'] == 'us-east-2')   ? ' selected' : '';?> >US East (Ohio)</option>
+                          <option value="us-west-1" <?php echo ($wo['config']['region_2'] == 'us-west-1')   ? ' selected' : '';?> >US West (N. California)</option>
+                          <option value="us-west-2" <?php echo ($wo['config']['region_2'] == 'us-west-2')   ? ' selected' : '';?> >US West (Oregon)</option>
+                          <option value="ap-northeast-2" <?php echo ($wo['config']['region_2'] == 'ap-northeast-2')   ? ' selected' : '';?> >Asia Pacific (Seoul)</option>
+                          <option value="ap-south-1" <?php echo ($wo['config']['region_2'] == 'ap-south-1')   ? ' selected' : '';?> >Asia Pacific (Mumbai)</option>
+                          <option value="ap-southeast-1" <?php echo ($wo['config']['region_2'] == 'ap-southeast-1')   ? ' selected' : '';?> >Asia Pacific (Singapore)</option>
+                          <option value="ap-southeast-2" <?php echo ($wo['config']['region_2'] == 'ap-southeast-2')   ? ' selected' : '';?> >Asia Pacific (Sydney)</option>
+                          <option value="ap-northeast-1" <?php echo ($wo['config']['region_2'] == 'ap-northeast-1')   ? ' selected' : '';?> >Asia Pacific (Tokyo)</option>
+                          <option value="ca-central-1" <?php echo ($wo['config']['region_2'] == 'ca-central-1')   ? ' selected' : '';?> >Canada (Central)</option>
+                          <option value="eu-central-1" <?php echo ($wo['config']['region_2'] == 'eu-central-1')   ? ' selected' : '';?> >EU (Frankfurt)</option>
+                          <option value="eu-west-1" <?php echo ($wo['config']['region_2'] == 'eu-west-1')   ? ' selected' : '';?> >EU (Ireland)</option>
+                          <option value="eu-west-2" <?php echo ($wo['config']['region_2'] == 'eu-west-2')   ? ' selected' : '';?> >EU (London)</option>
+                          <option value="sa-east-1" <?php echo ($wo['config']['region_2'] == 'sa-east-1')   ? ' selected' : '';?> >South America (São Paulo)</option>
+                        </select>
+                        <div class="clearfix"></div>
+                        <br><br>
+                        <span class="help-block ">1. Before enabling Amazon S3, make sure you upload the whole "upload/" folder to your bucket.</span>
+                        <span class="help-block ">2. Before disabling Amazon S3, make sure you download the whole "upload/" folder to your server.</span>
+                        <span class="help-block ">3. We recommend to upload the folder and files via <a href="http://s3tools.org/s3cmd">S3cmd</a>.</span>
+                        <span class="help-block ">4. If your site is still brand new, you can escape the upload step, but make sure to click on "Test Connection".</span>
+                        <input type="hidden" name="hash_id" value="<?php echo Wo_CreateSession();?>">
+                        <button type="submit" class="btn btn-primary m-t-15 waves-effect">Save</button>
+                        <button type="button" class="btn btn-warning m-t-15" onclick="Wo_TestS3()">Test Connection</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <div class="card">
+                <div class="header">
+                    <h2>Millicast Settings</h2>
+                </div>
+                <div class="body">
+                    <div class="alert alert-success millicast-settings-alert"></div>
+                    <form class="millicast-settings" method="POST">
+                        <label for="millicast_live_video">Millicast Live Video</label>
+                        <div class="form-group">
+                            <input type="radio" name="millicast_live_video" id="millicast_live_video-enabled" value="1" <?php echo ($wo['config']['millicast_live_video'] == 1) ? 'checked': '';?>>
+                            <label for="millicast_live_video-enabled">Enabled</label>
+                            <input type="radio" name="millicast_live_video" id="millicast_live_video-disabled" value="0" <?php echo ($wo['config']['millicast_live_video'] == 0) ? 'checked': '';?>>
+                            <label for="millicast_live_video-disabled" class="m-l-20">Disabled</label>
+                        </div>
+                        <div>
+                            To start using this feature, you'll need to create an account in <a href="https://www.millicast.com/">MilliCast</a>.
+                        </div>
+                        <br><br>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="text" id="live_token" name="live_token" class="form-control" value="<?php echo $wo['config']['live_token'];?>">
+                                <label class="form-label">PUBLISHING TOKEN</label>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="text" id="live_account_id" name="live_account_id" class="form-control" value="<?php echo $wo['config']['live_account_id'];?>">
+                                <label class="form-label">ACCOUNT ID</label>
+                            </div>
+                        </div>
+                        <input type="hidden" name="hash_id" value="<?php echo Wo_CreateSession();?>">
+                        <button type="submit" class="btn btn-primary m-t-15 waves-effect">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- LiveSmart Settings started -->
+        <div class="col-lg-6 col-md-6">
+            <div class="card">
+                <div class="header">
+                    <h2>LiveSmart Settings</h2>
+                </div>
+                <div class="body">
+                    <div class="alert alert-success livesmart-settings-alert"></div>
+                    <form class="livesmart-settings" method="POST">
+                        <label for="livesmart_live_video">LiveSmart Live Video</label>
+                        <div>
+                            To have this feature enabled, you need <a href="https://www.new-dev.com/page/ident/live_smart_video_chat">LiveSmart</a> installed.
+                        </div>
+                        <br><br>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="text" id="live_token" name="livesmart_url" class="form-control" value="<?php echo $wo['config']['livesmart_url'];?>">
+                                <label class="form-label">LiveSmart ULR</label>
+                            </div>
+                        </div>
+                        
+                        <input type="hidden" name="hash_id" value="<?php echo Wo_CreateSession();?>">
+                        <button type="submit" class="btn btn-primary m-t-15 waves-effect">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- LiveSmart Settings ended -->
+        <div class="clearfix"></div>
+    </div>
+    <!-- #END# Vertical Layout -->
+<script>
+
+function Wo_TestS3() {
+    $('form.agora-settings').find('.btn-warning').text('Please wait..');
+    $.get(Wo_Ajax_Requests_File(), {f:'admin_setting', s: 'test_s3_2'}, function (data) {
+        if (data.status == 200) {
+            alert('Connection established!');
+        } else if (data.status == 300) {
+            alert('Bucket doesn\'t exists');
+        } else if (data.status == 500) {
+            alert('Your s3 account doesn\'t have any buckets, please create one.');
+        } else if (data.status == 400) {
+            alert(data.message);
+        } else  {
+            alert('Error while connecting to amazone, please check your details');
+        }
+        $('form.agora-settings').find('.btn-warning').text('Test Connection');
+    });
+}
+
+$(function() {
+    var form_email_settings = $('form.email-settings');
+    form_email_settings.ajaxForm({
+        url: Wo_Ajax_Requests_File() + '?f=admin_setting&s=update_general_setting',
+        beforeSend: function() {
+            form_email_settings.find('button').text('Please wait..');
+        },
+        success: function(data) {
+            if (data.status == 200) {
+                form_email_settings.find('button').text('Save');
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+                $('.email-settings-alert').html('<i class="fa fa-check"></i> Settings updated successfully');
+                setTimeout(function () {
+                    $('.email-settings-alert').empty();
+                }, 2000);
+            }
+        }
+    });
+
+    var form_millicast_settings = $('form.millicast-settings');
+    form_millicast_settings.ajaxForm({
+        url: Wo_Ajax_Requests_File() + '?f=admin_setting&s=update_general_setting',
+        beforeSend: function() {
+            form_millicast_settings.find('button').text('Please wait..');
+        },
+        success: function(data) {
+            if (data.status == 200) {
+                form_millicast_settings.find('button').text('Save');
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+                $('.millicast-settings-alert').html('<i class="fa fa-check"></i> Settings updated successfully');
+                setTimeout(function () {
+                    $('.millicast-settings-alert').empty();
+                }, 2000);
+            }
+        }
+    });
+    
+    //LiveSmart settings started
+
+    var form_livesmart_settings = $('form.livesmart-settings');
+    form_livesmart_settings.ajaxForm({
+        url: Wo_Ajax_Requests_File() + '?f=admin_setting&s=update_general_setting',
+        beforeSend: function() {
+            form_livesmart_settings.find('button').text('Please wait..');
+        },
+        success: function(data) {
+            if (data.status == 200) {
+                form_livesmart_settings.find('button').text('Save');
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+                $('.livesmart-settings-alert').html('<i class="fa fa-check"></i> Settings updated successfully');
+                setTimeout(function () {
+                    $('.livesmart-settings-alert').empty();
+                }, 2000);
+            }
+        }
+    });
+    //LiveSmart settings ended
+
+    var form_agora_settings = $('form.agora-settings');
+    form_agora_settings.ajaxForm({
+        url: Wo_Ajax_Requests_File() + '?f=admin_setting&s=update_general_setting',
+        beforeSend: function() {
+            form_agora_settings.find('.waves-effect').text('Please wait..');
+        },
+        success: function(data) {
+            if (data.status == 200) {
+                form_agora_settings.find('.waves-effect').text('Save');
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+                $('.agora-settings-alert').html('<i class="fa fa-check"></i> Settings updated successfully');
+                setTimeout(function () {
+                    $('.agora-settings-alert').empty();
+                }, 2000);
+            }
+        }
+    });
+});
+</script>

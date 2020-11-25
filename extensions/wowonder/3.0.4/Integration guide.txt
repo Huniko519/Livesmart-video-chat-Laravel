@@ -1,0 +1,21 @@
+﻿Integration Guide for WoWonder 3.0.4
+
+1) Prerequisites
+
+- Make sure you have installed and activated LiveSmart Video Chat and installed and activated WoWonder Social Networking Platform v.3.0.4
+
+- More information about LiveSmart installation you can find here:
+https://www.new-dev.com/page/ident/live_smart_video_chat_installation
+
+- More information on how to install and setup WoWonder you can find here:
+https://docs.wowonder.com/start.html
+
+- Make sure you have enabled cURL module for your PHP.
+
+2) Integration
+
+- Once you have installed both systems, you can do a backup of your WoWonder files. Then you need to execute the SQL file included in LiveSmart extensions/wowonder/3.0.4 folder. Then you can replace files from extensions/wowonder/3.0.4 in your WoWonder folder.
+
+- Then login with your admin account to WoWonder admin panel and go to Settings - Live Stream Settings. There find LiveSmart Settings and fill in the URL where you have installed LiveSmart. For example if WoWonder is here https://yourdomain.com/wowonder and LiveSmart is https://yourdomain.com/video, in the LiveSmart URL field, fill in https://yourdomain.com/video
+
+- Email me at info@new-dev.com if you find difficulties with the integration and setup process.

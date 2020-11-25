@@ -1,0 +1,406 @@
+<div class="chat-wrapper chat_<?php echo $wo['chat']['recipient']['user_id'];?>" id="chat_<?php echo $wo['chat']['recipient']['user_id'];?>">
+	<div class="online-toggle-hdr pointer" onclick="javascript:$('.chat-tab-container-<?php echo $wo['chat']['recipient']['user_id'];?>').slideToggle(100);">
+		<div class="wow_chat_hdr_usr">
+			<div class="avatar">
+				<a href="<?php echo $wo['chat']['recipient']['url'];?>" data-ajax="?link1=timeline&u=<?php echo $wo['chat']['recipient']['username'];?>">
+					<img class="cht_hd_avtr" src="<?php echo $wo['chat']['recipient']['avatar'];?>" alt="<?php echo $wo['chat']['recipient']['name'];?>" />
+				</a>
+			</div>
+			<div>
+				<a href="<?php echo $wo['chat']['recipient']['url'];?>" data-ajax="?link1=timeline&u=<?php echo $wo['chat']['recipient']['username'];?>"> 
+					<h3><?php echo mb_substr($wo['chat']['recipient']['name'], 0, 20, "UTF-8");?></h3>
+					<p class="chat-tab-status <?php echo (Wo_IsOnline($wo['chat']['recipient']['user_id']) === true) ? 'active' : ''; ?>">
+						<svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24"><path fill="currentColor" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"></path></svg> <?php echo $wo['lang']['online'];?>
+					</p>
+				</a>
+			</div>
+		</div>
+		<div class="close-chat">
+			<?php if ($wo['config']['audio_chat'] == 1) {
+				if ($wo['config']['Who_call'] == 'pro' && $wo['user']['is_pro'] == 0 && !Wo_IsAdmin()) {}
+				else{
+			 ?>
+			<?php if ($wo['chat']['recipient']['lastseen'] > (time() - 60)) { ?>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" onclick="Wo_GenerateVoiceCall(<?php echo $wo['user']['user_id'];?>, <?php echo $wo['chat']['recipient']['user_id'];?>)"><path fill="currentColor" d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z" /></svg>
+			<?php } else { ?>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="disabled"><path fill="currentColor" d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z" /></svg>
+			<?php } } } ?>
+			<?php if ($wo['config']['video_chat'] == 1) {
+				if ($wo['config']['Who_call'] == 'pro' && $wo['user']['is_pro'] == 0 && !Wo_IsAdmin()) {}
+				else{
+			 ?>
+			<?php if ($wo['chat']['recipient']['lastseen'] > (time() - 60)) { ?>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" onclick="Wo_GenerateVideoCall(<?php echo $wo['user']['user_id'];?>, <?php echo $wo['chat']['recipient']['user_id'];?>)"><path fill="currentColor" d="M17,10.5V7A1,1 0 0,0 16,6H4A1,1 0 0,0 3,7V17A1,1 0 0,0 4,18H16A1,1 0 0,0 17,17V13.5L21,17.5V6.5L17,10.5Z" /></svg>
+			<?php } else { ?>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="disabled"><path fill="currentColor" d="M17,10.5V7A1,1 0 0,0 16,6H4A1,1 0 0,0 3,7V17A1,1 0 0,0 4,18H16A1,1 0 0,0 17,17V13.5L21,17.5V6.5L17,10.5Z" /></svg>
+			<?php } } } ?>
+			<a class="white" href="<?php echo Wo_SeoLink("index.php?link1=messages&user=" . $wo['chat']['recipient']['user_id']);?>" target="_blank" onclick="Wo_CloseChat(<?php echo $wo['chat']['recipient']['user_id'];?>);">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" /></svg>
+			</a>
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" onclick="Wo_CloseChat(<?php echo $wo['chat']['recipient']['user_id'];?>);"><path fill="currentColor" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
+		</div>
+	</div>
+
+	<div class="chat-tab-container chat-tab-container-<?php echo $wo['chat']['recipient']['user_id'];?> chat-tab-box-<?php echo $wo['chat']['recipient']['user_id'];?>">
+		<div class="chat-messages-wrapper chat-messages-wrapper-<?php echo $wo['chat']['recipient']['user_id'];?>">
+			<div class="chat-messages">
+				<div class="chat-user-desc">
+					<img src="<?php echo $wo['chat']['recipient']['avatar'];?>" alt="User avatar">
+					<div class="text">
+						<p class="head-text">
+							<?php $is_following = Wo_IsFollowing($wo['chat']['recipient']['user_id'], $wo['user']['user_id']);?>
+							<?php if ($wo['config']['connectivitySystem'] == 0) { ?>
+								<?php if ($is_following) { ?>
+									<?php echo $wo['lang']['your_following'];?> <?php echo $wo['chat']['recipient']['name'];?>
+								<?php } ?>
+							<?php } else { ?>
+								<?php 
+									if ($is_following) { 
+										echo $your_friends = str_replace('{site_name}', $wo['config']['siteName'], $wo['lang']['your_friends_chat']);
+									} 
+								?>
+							<?php } ?>
+						</p>
+						<?php 
+							$country = $wo['chat']['recipient']['country_id'];
+							if ($country > 0) {
+						?>
+							<div class="desc-text">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" /></svg> <?php echo $wo['lang']['living_in'];?> <?php echo $wo['countries_name'][$country];?>
+							</div>
+						<?php } ?>
+						<?php 
+							$working = $wo['chat']['recipient']['working'];
+							if (!empty($working)) {
+						?>
+							<div class="desc-text">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M10,2H14A2,2 0 0,1 16,4V6H20A2,2 0 0,1 22,8V19A2,2 0 0,1 20,21H4C2.89,21 2,20.1 2,19V8C2,6.89 2.89,6 4,6H8V4C8,2.89 8.89,2 10,2M14,6V4H10V6H14Z" /></svg> <?php echo $wo['lang']['working_at'];?> <?php echo $working;?>
+							</div>
+						<?php } ?>
+					</div>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="chat-textarea btn-group">
+			<form action="#" method="post" class="chat-sending-form-<?php echo $wo['chat']['recipient']['user_id'];?>">
+				<textarea name="textSendMessage" id="sendMessage" class="form-control" cols="10" rows="5" placeholder="<?php echo $wo['lang']['type_message'];?>"  onkeydown="Wo_SubmitChatForm(event, <?php echo $wo['chat']['recipient']['user_id'];?>);" onfocus="Wo_SubmitChatForm(event, <?php echo $wo['chat']['recipient']['user_id'];?>);" dir="auto" ></textarea>
+				<div class="chat-btns-w">
+					<div>
+					<span class="btn btn-file chat_optns" id="progressIcon">
+						<?php if($wo['config']['fileSharing'] == 1) { ?>
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="select-color"><path fill="<?php echo $wo['chat']['color']; ?>" d="M386.908,128.019c0,11.048-8.955,20.003-20.003,20.003h-141.91 c-11.048,0-20.003-8.955-20.003-20.003s8.955-20.003,20.003-20.003h141.91C377.952,108.016,386.908,116.971,386.908,128.019z M386.908,208.03c0-11.048-8.955-20.003-20.003-20.003h-141.91c-11.048,0-20.003,8.955-20.003,20.003s8.955,20.003,20.003,20.003 h141.91C377.952,228.033,386.908,219.078,386.908,208.03z M224.996,268.039c-11.048,0-20.003,8.955-20.003,20.003 c0,11.048,8.955,20.003,20.003,20.003h61.009c11.048,0,20.003-8.955,20.003-20.003c0-11.048-8.955-20.003-20.003-20.003H224.996z M428.025,252.036V80.012c0-22.059-17.947-40.006-40.006-40.006H203.993c-22.059,0-40.006,17.947-40.006,40.006v272.024 c0,10.689,4.163,20.735,11.721,28.291c7.556,7.555,17.601,11.715,28.285,11.715h0.009l184.027-0.045 c22.054-0.005,39.996-17.952,39.996-40.006c0-11.048,8.955-20.003,20.003-20.003s20.003,8.955,20.003,20.003 c0,40.728-30.596,74.452-70.01,79.389v0.608c0,44.118-35.893,80.012-80.012,80.012H123.98c-44.118,0-80.012-35.893-80.012-80.012 V159.949c0-44.118,35.893-80.012,80.012-80.012l0,0C124.021,35.853,159.899,0,203.993,0H388.02 c44.118,0,80.012,35.893,80.012,80.012v172.025c0,11.048-8.955,20.003-20.003,20.003S428.025,263.084,428.025,252.036z M147.423,408.62c-15.116-15.112-23.441-35.208-23.441-56.583V119.943c-22.059,0-40.006,17.947-40.006,40.006v272.039 c0,22.059,17.947,40.006,40.006,40.006h194.028c22.052,0,39.994-17.935,40.006-39.984l-154.002,0.038h-0.02 C182.623,432.047,162.536,423.729,147.423,408.62z"/></svg>
+							<input type="file" id="sendMessasgeFile" name="sendMessageFile" class="pointer" onchange="Wo_ShareChatFile(<?php echo $wo['chat']['recipient']['user_id'];?>);" />
+						<?php } else { ?>
+							<svg viewBox="0 -18 512 512" xmlns="http://www.w3.org/2000/svg" class="select-color"><path d="m432 0h-352c-44.113281 0-80 35.886719-80 80v280c0 44.113281 35.886719 80 80 80h190c7.628906 0 14.59375-4.339844 17.957031-11.191406 3.359375-6.847656 2.53125-15.015625-2.140625-21.046875l-52.3125-67.609375 144.992188-184.425782 93.503906 111.546876v33.726562c0 11.046875 8.953125 20 20 20s20-8.953125 20-20v-221c0-44.113281-35.886719-80-80-80zm-38.671875 111.152344c-3.871094-4.617188-9.609375-7.253906-15.640625-7.148438-6.027344.09375-11.6875 2.898438-15.410156 7.636719l-154.015625 195.894531-52.445313-67.773437c-3.789062-4.898438-9.628906-7.761719-15.816406-7.761719-.007812 0-.019531 0-.027344 0-6.199218.007812-12.046875 2.890625-15.824218 7.804688l-44.015626 57.21875c-6.734374 8.757812-5.097656 21.3125 3.65625 28.046874 8.757813 6.738282 21.3125 5.097657 28.046876-3.65625l28.210937-36.671874 89.1875 115.257812h-149.234375c-22.054688 0-40-17.945312-40-40v-280c0-22.054688 17.945312-40 40-40h352c22.054688 0 40 17.945312 40 40v125.007812zm-253.328125-39.152344c-33.085938 0-60 26.914062-60 60s26.914062 60 60 60 60-26.914062 60-60-26.914062-60-60-60zm0 80c-11.027344 0-20-8.972656-20-20s8.972656-20 20-20 20 8.972656 20 20-8.972656 20-20 20zm372 229c0 11.046875-8.953125 20-20 20h-55v55c0 11.046875-8.953125 20-20 20s-20-8.953125-20-20v-55h-55c-11.046875 0-20-8.953125-20-20s8.953125-20 20-20h55v-55c0-11.046875 8.953125-20 20-20s20 8.953125 20 20v55h55c11.046875 0 20 8.953125 20 20zm0 0" fill="<?php echo $wo['chat']['color']; ?>"/></svg>
+							<input type="file" id="sendMessasgeFile" name="sendMessageFile" onchange="Wo_ShareChatFile(<?php echo $wo['chat']['recipient']['user_id'];?>);" accept="image/x-png, image/gif, image/jpeg"  />
+						<?php } ?>
+					</span>
+					<?php if ($wo['config']['audio_upload'] == 1) { ?>
+						<span class="btn btn-file record-chat-audio chat_optns" data-record="0" data-chat-tab="<?php echo $wo['chat']['recipient']['user_id'];?>">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264.02 264.02" class="select-color"><g> <path fill="<?php echo $wo['chat']['color']; ?>" d="M210.506,126.764c-4.143,0-7.5,3.358-7.5,7.5c0,17.302-8.038,34.335-22.052,46.73 c-13.11,11.596-30.349,18.247-47.297,18.247h-3.295c-16.947,0-34.186-6.65-47.296-18.247 c-14.015-12.395-22.052-29.427-22.052-46.73c0-4.142-3.357-7.5-7.5-7.5s-7.5,3.358-7.5,7.5c0,21.598,9.883,42.726,27.114,57.966 c14.314,12.662,32.764,20.413,51.381,21.773v35.017H89.675c-4.143,0-7.5,3.358-7.5,7.5c0,4.142,3.357,7.5,7.5,7.5h84.667 c4.143,0,7.5-3.358,7.5-7.5c0-4.142-3.357-7.5-7.5-7.5H139.51v-35.017c18.617-1.361,37.067-9.112,51.382-21.773 c17.232-15.241,27.114-36.369,27.114-57.966C218.006,130.122,214.648,126.764,210.506,126.764z"/> <path fill="<?php echo $wo['chat']['color']; ?>" d="M130.421,184.938h3.18c30.021,0,56.357-24.364,56.357-52.14v-80.66 C189.957,24.364,163.622,0,133.6,0h-3.18c-30.022,0-56.357,24.364-56.357,52.138v80.66 C74.063,160.573,100.398,184.938,130.421,184.938z M89.063,52.138C89.063,32.701,108.776,15,130.421,15h3.18 c21.645,0,41.357,17.701,41.357,37.138v80.66c0,19.438-19.712,37.14-41.357,37.14h-3.18c-21.644,0-41.357-17.702-41.357-37.14 V52.138z"/> </g></svg>
+						</span>
+					<?php } ?>
+					<span data-chat-rtime="<?php echo $wo['chat']['recipient']['user_id'];?>" class="record_timei hidden">00:00</span>
+					<?php if ($wo['config']['stickers'] == 1): ?>
+						<span class="dropup chat_optns" id="chat-gifs">
+							<span class="btn btn-file dropdown-toggle" data-toggle="dropdown" aria-expanded="true" role="button">
+								<svg viewBox="-53 0 511 512" xmlns="http://www.w3.org/2000/svg" class="select-color"><path d="m315.386719 379v32h48c11.046875 0 20 8.953125 20 20s-8.953125 20-20 20h-48v41c0 11.046875-8.953125 20-20 20-11.042969 0-20-8.953125-20-20v-113c0-27.570312 22.429687-50 50-50h38c11.046875 0 20 8.953125 20 20s-8.953125 20-20 20h-38c-5.511719 0-10 4.484375-10 10zm73.429687-283.859375-77.570312-77.566406c-11.332032-11.332031-26.398438-17.574219-42.425782-17.574219h-188.320312c-44.113281 0-80 35.886719-80 80v190c0 11.046875 8.953125 20 20 20s20-8.953125 20-20v-190c0-22.054688 17.945312-40 40-40h188.320312c5.339844 0 10.363282 2.082031 14.140626 5.859375l77.570312 77.566406c3.777344 3.777344 5.855469 8.800781 5.855469 14.140625v132.433594c0 11.046875 8.957031 20 20 20 11.046875 0 20-8.953125 20-20v-132.433594c0-16.023437-6.238281-31.089844-17.570313-42.425781zm-253.429687 316.859375h-35c-11.042969 0-20 8.953125-20 20s8.957031 20 20 20h13.984375c-4.535156 11.992188-16.21875 20-29.984375 20-17.644531 0-32-14.355469-32-32v-38c0-17.644531 14.355469-32 32-32 11.265625 0 21.5 5.757812 27.367187 15.398438 5.742188 9.4375 18.046875 12.429687 27.484375 6.683593 9.433594-5.742187 12.425781-18.046875 6.683594-27.480469-13.1875-21.667968-36.191406-34.601562-61.535156-34.601562-39.699219 0-72 32.300781-72 72v38c0 39.699219 32.300781 72 72 72 16.722656 0 32.96875-5.683594 45.75-16 12.824219-10.355469 21.65625-24.953125 24.867187-41.097656.253906-1.285156.382813-2.59375.382813-3.902344v-19c0-11.046875-8.953125-20-20-20zm80-83c-11.042969 0-20 8.953125-20 20v143c0 11.046875 8.957031 20 20 20 11.046875 0 20-8.953125 20-20v-143c0-11.046875-8.953125-20-20-20zm0 0" fill="<?php echo $wo['chat']['color']; ?>"/></svg>
+							</span>
+							<ul class="dropdown-menu drop-up" role="menu" onclick="event.stopPropagation()">
+								<div class="w100" id="chat-box-stickers">
+									<input type="text" class="form-control" placeholder="<?php echo $wo['lang']['search'] ?> GIFs" onkeyup="Wo_GetChatStickers(this.value)">
+									<div id="chat-box-stickers-cont"></div>
+								</div>
+							</ul>
+						</span>
+					<?php endif; ?>
+					<?php if ($wo['config']['stickers_system'] == 1): ?>
+						<span class="dropup chat_optns" id="chat-sticker-system">
+							<span class="btn btn-file dropdown-toggle" data-toggle="dropdown" aria-expanded="true" role="button">
+								<svg viewBox="0 0 511.9993 511" xmlns="http://www.w3.org/2000/svg" class="select-color"><path d="m506.140625 279.898438-273.464844-273.351563c-3.0625-3.058594-6.992187-5-11.171875-5.625-.238281-.050781-.464844-.117187-.707031-.15625-3.617187-.597656-7.160156-.164063-10.355469 1.050781-57.625 10.675782-110.238281 41.011719-148.601562 85.800782-39.878906 46.558593-61.839844 106-61.839844 167.371093 0 68.785157 26.796875 133.453125 75.453125 182.089844s113.347656 75.421875 182.15625 75.421875c45.886719 0 91.417969-12.742188 131.664063-36.84375 9.480468-5.671875 12.5625-17.957031 6.886718-27.433594-5.675781-9.476562-17.960937-12.558594-27.433594-6.882812-34.527343 20.675781-71.914062 31.160156-111.117187 31.160156-119.992187-.003906-217.609375-97.578125-217.609375-217.511719 0-97.476562 63.578125-181.085937 154.648438-208.285156-.210938 4.285156-.332032 8.574219-.332032 12.847656 0 68.785157 26.796875 133.453125 75.453125 182.09375 32.464844 32.445313 72.070313 55.152344 115.269531 66.683594-11.453124 27.175781-31.246093 49.867187-57.132812 65.089844-31.773438 18.683593-68.925781 23.871093-104.601562 14.617187-35.683594-9.257812-65.621094-31.855468-84.304688-63.628906-18.683594-31.777344-23.875-68.925781-14.617188-104.605469 6.339844-24.433593 19.1875-46.597656 37.160157-64.105469 7.910156-7.707031 8.078125-20.367187.367187-28.28125-7.707031-7.910156-20.371094-8.078124-28.28125-.371093-23.203125 22.605469-39.789062 51.207031-47.964844 82.714843-11.9375 46.019532-5.242187 93.9375 18.855469 134.921876 24.097657 40.984374 62.714844 70.132812 108.738281 82.074218 14.902344 3.867188 30.003907 5.777344 45.003907 5.777344 31.320312 0 62.207031-8.335938 89.917969-24.632812 35.980468-21.15625 62.832031-53.496094 76.933593-92.214844 8.847657.90625 17.792969 1.378906 26.808594 1.378906 4.746094 0 9.507813-.144531 14.265625-.40625-5.976562 19.625-14.972656 38.671875-26.914062 56.875-6.054688 9.234375-3.476563 21.632812 5.757812 27.691406s21.632812 3.480469 27.691406-5.757812c20.203125-30.800782 33.324219-63.824219 39.007813-98.15625 1.054687-6.367188-1.027344-12.851563-5.589844-17.410156zm-271.757813-215.089844 212.273438 212.1875c-115.816406-2.765625-209.511719-96.421875-212.273438-212.1875zm0 0" fill="<?php echo $wo['chat']['color']; ?>"/></svg>
+							</span>
+							<ul class="dropdown-menu drop-up" role="menu">
+								<div class="w100" id="chat-box-internal-stickers">
+									<div id="chat-box-stickers-cont">
+										<?php 
+											$stickers_system = Wo_GetAllStickers(50000);
+											if( count( $stickers_system ) > 0 ){
+												foreach ($stickers_system as $wo['stickerlist']) {
+													echo '<img alt="gif" src="'. Wo_GetMedia( $wo['stickerlist']['media_file'] ).'" data-gif="'.Wo_GetMedia( $wo['stickerlist']['media_file'] ).'" onclick="Wo_ChatSticker(this);" autoplay loop>';
+												}
+											} else {
+												echo '<div class="empty_state"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12.12,18.46L18.3,12.28C16.94,12.59 15.31,13.2 14.07,14.46C13.04,15.5 12.39,16.83 12.12,18.46M20.75,10H21.05C21.44,10 21.79,10.27 21.93,10.64C22.07,11 22,11.43 21.7,11.71L11.7,21.71C11.5,21.9 11.26,22 11,22L10.64,21.93C10.27,21.79 10,21.44 10,21.05C9.84,17.66 10.73,14.96 12.66,13.03C15.5,10.2 19.62,10 20.75,10M12,2C16.5,2 20.34,5 21.58,9.11L20,9H19.42C18.24,6.07 15.36,4 12,4A8,8 0 0,0 4,12C4,15.36 6.07,18.24 9,19.42C8.97,20.13 9,20.85 9.11,21.57C5,20.33 2,16.5 2,12C2,6.47 6.5,2 12,2Z" /></svg>'. $wo['lang']['no_result'] .'</div>';
+											}
+										?>
+									</div>
+								</div>
+							</ul>
+						</span>
+					<?php endif; ?>
+                                        <!-- LiveSmart video button chat integration start -->
+					<?php if ($wo['config']['livesmart_url'] && (Wo_IsOnline($wo['chat']['recipient']['user_id']) === true)): ?>
+						<span class="dropup chat_optns" >
+							<span class="btn btn-file dropdown-toggle" role="button" title="LiveSmart Video Chat">
+                                                            <svg version="1.1" id="livesmart_startvideo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 76 76"  style="enable-background:new 0 0 76 76;" xml:space="preserve" fill="<?php echo $wo['chat']['color']; ?>"> <g id="_x37_7_Essential_Icons_72_"> 	<path id="Video_Camera" d="M72.9,14.4L56,25.3V22c0-4.4-3.6-8-8-8H8c-4.4,0-8,3.6-8,8v32c0,4.4,3.6,8,8,8h40c4.4,0,8-3.6,8-8v-3.3 		l16.9,10.9c1.9,1,3.1-0.7,3.1-1.7V16C76,15,74.9,13.2,72.9,14.4z M52,54c0,2.2-1.8,4-4,4H8c-2.2,0-4-1.8-4-4V22c0-2.2,1.8-4,4-4h40 		c2.2,0,4,1.8,4,4V54z M72,56.3L56,46V30l16-10.3V56.3z"/></g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g></svg>
+							</span>
+							
+						</span>
+                                                <script data-agent_id="<?php echo $wo['chat']['recipient']['username'];?>" data-source_path="<?php echo $wo['config']['livesmart_url'];?>" src="<?php echo $wo['config']['livesmart_url'];?>js/widget.js" async></script>
+					<?php endif; ?>
+                                        <!-- LiveSmart video button chat integration end -->
+					<span class="dropup chat_optns">
+						<span class="btn btn-file dropdown-toggle" data-toggle="dropdown" aria-expanded="true" role="button">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="select-color"><path fill="<?php echo $wo['chat']['color']; ?>" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" /></svg>
+						</span>
+						<ul class="dropdown-menu drop-up wow_choose_chat_clrs" role="menu">
+							<div class="chat-colors-cont text-center">
+								<?php foreach ($wo['colors'] as $key => $color) {?>
+									<a class="chat-color" data-chat-color="<?php echo $color; ?>" data-recipient-u-id="<?php echo $wo['chat']['recipient']['user_id'];?>" style="color: <?php echo $color; ?>;">
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" /></svg>
+									</a>
+								<?php } ?>
+							</div>
+						</ul>
+					</span>
+					</div>
+					
+					<div>
+						<span class="dropup chat_optns">
+							<span class="emo-btn-<?php echo $wo['chat']['recipient']['user_id'];?> dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+								<span class="btn btn-file">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="select-color"><path fill="<?php echo $wo['chat']['color']; ?>" d="M256,512c-68.38,0-132.667-26.629-181.02-74.98C26.629,388.667,0,324.38,0,256 S26.629,123.333,74.98,74.98C123.333,26.629,187.62,0,256,0s132.667,26.629,181.02,74.98C485.371,123.333,512,187.62,512,256 c0,50.53-14.998,99.674-43.374,142.116c-6.138,9.182-18.559,11.65-27.742,5.51c-9.182-6.139-11.649-18.56-5.51-27.742 C459.335,340.044,472,298.589,472,256c0-119.103-96.897-216-216-216S40,136.897,40,256s96.897,216,216,216 c39.505,0,78.144-10.756,111.737-31.106c9.447-5.724,21.745-2.705,27.469,6.744c5.723,9.447,2.703,21.745-6.744,27.469 C348.617,499.242,302.813,512,256,512z M351,313c0-11.046-8.954-20-20-20s-20,8.954-20,20c0,30.327-24.673,55-55,55 s-55-24.673-55-55c0-11.046-8.954-20-20-20s-20,8.954-20,20c0,52.383,42.617,95,95,95S351,365.383,351,313z M395,201 c0-27.57-22.43-50-50-50s-50,22.43-50,50c0,11.046,8.954,20,20,20s20-8.954,20-20c0-5.514,4.486-10,10-10s10,4.486,10,10 c0,11.046,8.954,20,20,20S395,212.046,395,201z M218,201c0-27.57-22.43-50-50-50s-50,22.43-50,50c0,11.046,8.954,20,20,20 s20-8.954,20-20c0-5.514,4.486-10,10-10s10,4.486,10,10c0,11.046,8.954,20,20,20S218,212.046,218,201z"/></svg>
+								</span>
+							</span>
+							<ul class="emo-container dropdown-menu emo-container-<?php echo $wo['chat']['recipient']['user_id'];?>" role="menu">
+								<?php  
+									foreach ($wo['emo'] as $code => $name) {
+										$code   = $code;
+										echo  '<span onclick="Wo_AddEmoToChat(\'' . $code . '\', ' . $wo['chat']['recipient']['user_id'] . ');"><i class="pointer twa-lg twa twa-' . $name . '"></i></span>'; 
+									} 
+								?>
+							</ul>
+						</span>
+						<div class="ball-pulse"><div></div><div></div><div></div></div>
+					</div>
+				</div>
+				<input type="hidden" id="user-id" class="chat-user-id" name="user_id" value="<?php echo $wo['chat']['recipient']['user_id'];?>" />
+				<input type="hidden" id="color" value="<?php echo $wo['chat']['color'];?>" />
+				<input type="hidden" name="message-record" class="message-record" >
+				<input type="hidden" name="media-name" class="media-name" >
+				<input type="hidden" name="chatSticker" id='chatSticker'>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    $(".chat-colors-cont a").click(function(event) {
+      var recipient_id = $(this).attr('data-recipient-u-id');
+      $.ajax({
+        url:  Wo_Ajax_Requests_File(),
+        type: 'get',
+        data:{f:'chat',s:'set-chat-color',color:$(this).attr('data-chat-color'),recipient_user:$(this).attr('data-recipient-u-id')},
+        dataType: 'json',
+        success: function(data){
+          if (data['status'] == 200) {
+             $(".chat_" + recipient_id).find('.outgoing .message-text, .outgoing .message-media').css('background', data['color']);
+             $(".chat_" + recipient_id).find('.outgoing .message-text').css('color', '#fff');
+             $(".chat_" + recipient_id).find('.select-color path').css('fill', data['color']);
+             $(".chat_" + recipient_id).find('#color').val(data['color']);
+             $(".text-sender-container .red-list").css('background', data.color);
+             $(".text-sender-container .btn-file").css('background', data.color);
+             $(".text-sender-container .btn-file").css('border-color', data.color);
+          }
+        }
+      });
+    });
+    
+    //LiveSmart Video Chat startig video chat
+    $("#livesmart_startvideo").click(function(event) {
+        var roomId = Math.random().toString(36).slice(2).substring(0, 15);
+        var str = {};
+        str.lsRepUrl = '<?php echo $wo['config']['livesmart_url']?>';
+        str.names = '<?php echo $wo['chat']['recipient']['name']; ?>';
+        str.visitorName = '<?php echo $wo['user']['name'];?>';
+        str.agentId = '<?php echo $wo['chat']['recipient']['username']; ?>';
+        var encodedString = window.btoa(unescape(encodeURIComponent(JSON.stringify(str))));
+        encodedString = encodedString.split('=').join('');
+        visitorUrl = str.lsRepUrl + 'pages/r.html?room=' + roomId + '&p=' + encodedString + '&s=' + sessionId;
+        str.isAdmin = 1;
+        encodedString = window.btoa(unescape(encodeURIComponent(JSON.stringify(str))));
+        encodedString = encodedString.split('=').join('');
+        agentUrl = str.lsRepUrl + 'pages/r.html?room=' + roomId + '&p=' + encodedString + '&isAdmin=1';
+        window.open(visitorUrl);
+        $('#sendMessage').val('Request for a video chat ' + agentUrl);
+        $('form.chat-sending-form-<?php echo $wo['chat']['recipient']['user_id'];?>').submit();
+    });
+    
+    
+});
+
+$(function() {
+    var main_hash_id = $('.main_session').val();
+    $('.emo-btn-<?php echo $wo['chat']['recipient']['user_id'];?>').click(function () {
+        $('.emo-container-<?php echo $wo['chat']['recipient']['user_id'];?>').toggle();
+    });
+    var chat_messages_wrapper = $('.chat-messages-wrapper-<?php echo $wo['chat']['recipient']['user_id'];?>');
+    $('form.chat-sending-form-<?php echo $wo['chat']['recipient']['user_id'];?>').ajaxForm({
+        url: Wo_Ajax_Requests_File() + '?f=chat&s=send_message&hash=' + main_hash_id,
+        beforeSend: function() {
+            if (chat_messages_wrapper.find('.chat-user-desc').length == 1) {
+                chat_messages_wrapper.find('.chat-user-desc').hide();
+            }
+            var text_message = escapeHTML($('.chat-sending-form-<?php echo $wo['chat']['recipient']['user_id'];?> #sendMessage').val());
+            $('.chat-sending-form-<?php echo $wo['chat']['recipient']['user_id'];?>').attr('disabled', true);
+            var color = $('.chat-sending-form-<?php echo $wo['chat']['recipient']['user_id'];?> #color').val();
+            <?php  if (!empty($wo['chat']['color'])) { ?>
+             var html_message = '<div class="sended_message"><div class="messages-wrapper pull-right messages-text" id="messageId_" data-message-id=""><div class="message outgoing pull-right"><p class="message-text" style="background: ' + color + ';color: #fff" dir="auto">' + text_message + '</p><div class="clear"></div><div class="message-media"></div></div><div class="clear"></div><div class="message-seen text-right message-details"></div><div class="clear"></div><div class="message-typing message-details"></div></div><div class="clear"></div></div>';
+            <?php } else { ?>
+              var html_message = '<div class="sended_message"><div class="messages-wrapper pull-right messages-text" id="messageId_" data-message-id=""><div class="message outgoing pull-right"><p class="message-text" dir="auto">' + text_message + '</p><div class="clear"></div><div class="message-media"></div></div><div class="clear"></div><div class="message-seen text-right message-details"></div><div class="clear"></div><div class="message-typing message-details"></div></div><div class="clear"></div></div>';
+            <?php } ?>
+            if (!text_message && $('form.chat-sending-form-<?php echo $wo['chat']['recipient']['user_id'];?>').find('input.message-record').val() == '' && $('form.chat-sending-form-<?php echo $wo['chat']['recipient']['user_id'];?>').find('#chatSticker').val() == '') {
+              $('form.chat-sending-form-<?php echo $wo['chat']['recipient']['user_id'];?>').find('#sendMessasgeFile').val('');
+              return false;
+            }
+            $('body').attr('sending-<?php echo $wo['chat']['recipient']['user_id'];?>', true);
+            if (text_message && $('form.chat-sending-form-<?php echo $wo['chat']['recipient']['user_id'];?> #sendMessasgeFile').val() == '') {
+              if (chat_messages_wrapper.length == 0) {
+                chat_messages_wrapper.html(html_message);
+              } else {
+                chat_messages_wrapper.append(html_message);
+              }
+            }
+            setTimeout(function() {
+                  chat_messages_wrapper.scrollTop(chat_messages_wrapper[0].scrollHeight);
+            }, 100);
+            $('form.chat-sending-form-<?php echo $wo['chat']['recipient']['user_id'];?>').clearForm();
+        },
+        uploadProgress: function () {
+		  $('form.chat-sending-form-<?php echo $wo['chat']['recipient']['user_id'];?>').find('.ball-pulse').fadeIn(100);
+        },
+        success: function(data) {
+            if (data.status == 200) {
+                chat_messages_wrapper.find("div[class*='message-seen']").empty();
+                chat_messages_wrapper.find("div[class*='message-typing']").empty();
+                if( data.stickers == true ){
+                  chat_messages_wrapper.append(data.html); 
+                }else{
+                  chat_messages_wrapper.find(".sended_message:last").html(data.html); 
+                }
+                $('form.chat-sending-form-<?php echo $wo['chat']['recipient']['user_id'];?>').find('input.message-record').val('');   
+                $('form.chat-sending-form-<?php echo $wo['chat']['recipient']['user_id'];?>').find('input.media-name').val('');
+                $("#chatSticker").val('');
+                $("#chat-gifs").removeClass('open');
+                if (data.invalid_file == 1) {
+                  $("#invalid_file").modal('show');
+                  Wo_Delay(function(){
+                    $("#invalid_file").modal('hide');
+                  },3000);
+				          $('form.chat-sending-form-<?php echo $wo['chat']['recipient']['user_id'];?>').find('.ball-pulse').fadeOut(100);
+                }
+                if(data.invalid_file == 2){
+                  $("#file_not_supported").modal('show');
+                  Wo_Delay(function(){
+                    $("#file_not_supported").modal('hide');
+                  },3000);
+                }
+                $('body').attr('sending-<?php echo $wo['chat']['recipient']['user_id'];?>', false);
+                if (data.file == true) {
+                  $('form.chat-sending-form-<?php echo $wo['chat']['recipient']['user_id'];?>').find('.ball-pulse').fadeOut(100);
+                }
+                
+            }
+            else if(data.status == 500 && data.invalid_file == 1){
+              $("#invalid_file").modal('show');
+              Wo_Delay(function(){
+                $("#invalid_file").modal('hide');
+              },3000);
+              $('form.chat-sending-form-<?php echo $wo['chat']['recipient']['user_id'];?>').find('.ball-pulse').fadeOut(100);
+            }
+            else if(data.status == 500 && data.invalid_file == 2){
+              $("#file_not_supported").modal('show');
+              Wo_Delay(function(){
+                $("#file_not_supported").modal('hide');
+              },3000);
+              $('form.chat-sending-form-<?php echo $wo['chat']['recipient']['user_id'];?>').find('.ball-pulse').fadeOut(100);
+            }
+            else if(data.status == 500 && data.invalid_file == 3){
+              $("#pro_upload_file").modal('show');
+              Wo_Delay(function(){
+                $("#pro_upload_file").modal('hide');
+              },3000);
+              $('form.chat-sending-form-<?php echo $wo['chat']['recipient']['user_id'];?>').find('.ball-pulse').fadeOut(100);
+            }
+            setTimeout(function() {
+              chat_messages_wrapper.scrollTop(chat_messages_wrapper[0].scrollHeight);
+            }, 700);
+        }
+    });
+}); 
+function escapeHTML(string) {
+    var pre = document.createElement('pre');
+    var text = document.createTextNode( string );
+    pre.appendChild(text);
+    return pre.innerHTML;
+}
+
+function Wo_ChatSticker(self){
+  if (!self) {
+    return false;
+  }
+  $('#chatSticker').val($(self).attr('data-gif'));
+  Wo_RegisterTabMessage('<?php echo $wo['chat']['recipient']['user_id'];?>');
+  $("#chat-sticker-system").removeClass("open");
+}
+
+function Wo_GetChatStickers(keyword = ''){
+  if (!keyword) {
+    return false;
+  }
+  var chat_gif_loading =  '\
+  <div class="sk-circle">\
+    <div class="sk-circle1 sk-child"></div>\
+    <div class="sk-circle2 sk-child"></div>\
+    <div class="sk-circle3 sk-child"></div>\
+    <div class="sk-circle4 sk-child"></div>\
+    <div class="sk-circle5 sk-child"></div>\
+    <div class="sk-circle6 sk-child"></div>\
+    <div class="sk-circle7 sk-child"></div>\
+    <div class="sk-circle8 sk-child"></div>\
+    <div class="sk-circle9 sk-child"></div>\
+    <div class="sk-circle10 sk-child"></div>\
+    <div class="sk-circle11 sk-child"></div>\
+    <div class="sk-circle12 sk-child"></div>\
+  </div>';
+  $('#chat-box-stickers-cont').html(chat_gif_loading);
+  Wo_Delay(function(){
+    $.ajax({
+      url: 'https://api.giphy.com/v1/gifs/search?',
+      type: 'GET',
+      dataType: 'json',
+      data: {q:keyword,api_key:'<?php echo $wo['config']['giphy_api'];?>',limit:15},
+    })
+    .done(function(data) {
+      if (data.meta.status == 200 && data.data.length > 0) {
+        $('#chat-box-stickers-cont').empty();
+        for (var i = 0; i < data.data.length; i++) {
+          appended = true;
+          if (appended == true) {
+              appended = false;
+            $('#chat-box-stickers-cont').append($('<img alt="gif" src="'+data.data[i].images.fixed_height_small.url+'" data-gif="' + data.data[i].images.fixed_height.url + '" onclick="Wo_ChatSticker(this)" autoplay loop>'));
+            appended = true;
+          } 
+        }
+      }
+      else{
+        $('#chat-box-stickers-cont').html('<div class="empty_state"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M11,8H13V16H11V8M7.67,8H4.33C3.53,8 3,8.67 3,9.33V14.67C3,15.33 3.53,16 4.33,16H7.67C8.47,16 9,15.33 9,14.67V12H7V14H5V10H9V9.33C9,8.67 8.47,8 7.67,8M21,10V8H15V16H17V14H19.5V12H17V10H21Z" /></svg><?php echo $wo['lang']['no_result']; ?></div>');
+      }
+    })
+    .fail(function() {
+      console.log("error");
+    })
+  },1000);
+}
+</script>

@@ -1,0 +1,34 @@
+<div id="newdev_widget" class="newdev_widget_div">
+    <section class="msger-lsv-widget" id="simpleButton" style="display: none;">
+        <header class="msger-lsv-header">
+            <div class="msger-lsv-header-title">
+                LiveSmart Video Chat
+            </div>
+            <div class="msger-lsv-header-options">
+                <a href="javascript:void(0);" title="Start video chat" id="videoCallLsvLink"  class="videocall-but-wd-small-widget"><img width="25" id="videoCallLsvIcon" src="img/video_call_hover.png"></a>
+                <a href="javascript:void(0);" title="Minimize the chat" id="minimizeSimpleChat" class="minimize-but-wd-small-widget"><img width="25" id="minimizeLsvImage" src="img/minimize.png"></a>
+                <a href="javascript:void(0);" title="Maximize the chat" id="maximizeSimpleChat" class="maximize-but-wd-small-widget" style="display: none;"><img width="25" id="maximizeLsvImage"  src="img/maximize.png"></a>
+                <a href="javascript:void(0);" title="Close the chat" id="closeSimpleChat" class="close-but-wd-small-widget"><img id="closeLsvImage" width="25" src="img/close.png"></a>
+            </div>
+        </header>
+
+        <main class="msger-lsv-chat">
+            
+        </main>
+
+        <form class="msger-lsv-inputarea">
+            <input type="text" class="msger-lsv-input" placeholder="Enter your message...">
+            <button type="submit" class="msger-lsv-send-btn">Send</button>
+        </form>
+    </section>
+
+    <a href="javascript:void(0);" id="widget-but" class="widget-but trn-link" title=""><span class="icon-bnt"></span><span class="newdev_widget_msg" id="newdev_widget_msg"></span><span id="widget_but_span" class="offline-bnt"></span>
+        <div class="rlt-of clearfix"  id="widget_tooltip_container" style="display:none;">
+            <div class="modal-left-s">
+                <p id="offline_notify">We are currently offline! Please leave your message to us below:</p>
+                <textarea id="offline_message"></textarea>
+                <button id="sendEmail">Send email</button>
+            </div>
+        </div>
+    </a>
+</div>

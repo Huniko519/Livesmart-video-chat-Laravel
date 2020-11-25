@@ -1,0 +1,8 @@
+Options -Indexes
+RewriteEngine On
+ 
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+ 
+ 
+RewriteRule ^(\w+)$ ./routes.php?short=$1

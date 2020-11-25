@@ -1,0 +1,411 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <div id="error_message" style="display: none">
+
+            <div class="dropdown-us allow2">
+                <ul>
+                    <li><span class="arrow-dr"></span></li>
+                    <li id="error_message_text"></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- pii form -->
+
+        <div id="nd_widget_content" style="display: none">
+            <div class="cus-site-width">
+                <div id="agent_widget">
+
+                    <!-- ##################### START CALL MODAL WINDOWS ################################# -->
+                    <div id="newdev_video" style="display: none" class="screen-wd clearfix">
+                        <div class="screen-wd-bg">
+                            <div class="clearfix" id="mainleft_div">
+                                <div class="wd-video-box" id="wd-widget-content-video"  style="display: none">
+                                    <a href="javascript:void(0);" class="wd-v-b1" id="fullscreenButton" title="" ></a>
+                                    <div class="wd-video-box-on" style="display: block">
+
+                                        <div class="wd-video-c" style="display: none">
+                                            <div class="control-ss" style="display: none">
+                                                <a href="javascript:void(0);" title="" class="close-but-wd-small"><span></span></a>
+                                                <span class="arrow-dr"></span>
+                                                <span id="enableScreenShare">You have to install Chrome extension to enable screen sharing from <a id="screensharelink" href="https://chrome.google.com/webstore/detail/nphkdpfdiidjglfcplkpkdjpdlpmkdpg" target="_blank">Google Webstore</a>.</span>
+                                            </div>
+                                            <a href="javascript:void(0);" id="showHideVideo" class="wd-v-video trn-link" title="Toggle Video"></a>
+                                            <a href="javascript:void(0);" class="wd-v-share trn-link" title="Start a ScreenShare Session" style="display:none"></a>
+                                            <a href="javascript:void(0);" class="wd-v-stopshare trn-link" title="Stop Screen Sharing" style="display:none"></a>
+                                            <a href="javascript:void(0);" id="showHideAudio" class="wd-v-sound trn-link" title="Toggle Audio"></a>
+                                            <a href="javascript:void(0);" class="wd-v-recording recording-off trn-link" title="Recording" style="display: none;"></a>
+                                            <div class="control-recording" id="recording_message" style="display: none">
+                                                <a href="javascript:void(0);" title="" class="close-but-wd-small"><span></span></a>
+                                                <span class="arrow-dr"></span>
+                                                <a class="recordinglink" href="" target="_blank">Click to download</a>
+                                            </div>
+                                            <a href="javascript:void(0);" class="wd-v-next-camera trn-link" id="cameraSwitch" title="Switch to Another Camera" style="display: none" title="Next Camera"></a>
+                                            <a href="javascript:void(0)" class="wd-v-text trn-link" style="display:none" title="">
+                                                <div class="swipe_text">chat<br/>screen</div>
+                                                <div class="new_chat_badge_container" style="display:none">
+                                                    <span class="new_chat_badge" >&nbsp;</span>
+                                                </div>
+                                            </a>
+                                            <a href="javascript:void(0);" class="wd-v-pickupaudio trn-link disabled" id="answer_audiocall_button1" title="Answer with Voice Only"><span></span></a>
+                                            <a href="javascript:void(0);" class="wd-v-pickup trn-link disabled" id="answer_call_button1" title="Answer with Video"><span></span></a>
+                                            <a href="javascript:void(0);" id="hangupButton" class="wd-v-hangup trn-link delay" title="Hangup"><span></span></a>
+                                        </div>
+                                        <div class="wd-video">
+                                            <div id="video_container_small" class="video_container_small">
+
+                                            </div>
+                                            <div id="video_container" class="video_container">
+                                                <div class="wd-avatar-agent-video" id="video_back">
+                                                    <img class="peer_avatar" alt="">
+                                                </div>
+                                                <!--<video id="remoteVideo" class="sourcevideo" autoplay="autoplay" muted="muted" playsinline style="display: none; background:transparent; background-size:100%"></video>-->
+                                                <video id="remoteScreen" class="sourcescreen" autoplay="autoplay" muted="muted" playsinline 
+                                                       style="background:transparent; background-size:100%; display: none"></video>
+                                                <div id="local_video_div" class="localvideo_div">
+                                                    <video id="localVideo" class="localvideo" autoplay="autoplay" playsinline muted="muted" poster="../img/small-avatar.jpg" style="background:transparent; background-size:100%"></video>
+                                                    <video id="localScreen" class="localvideo" autoplay="autoplay" muted="muted" playsinline style="display:none"></video>
+                                                </div>
+                                                <a id="exitFullscreenButton" href="javascript:void(0);" class="wd-v-b2" title=""
+                                                   style="top: 2px; background-color: #ececec; display: none"></a>
+                                                <img class="recordingIcon" src="../img/recording.png" style="display:none" />
+                                            </div>
+
+                                            <div class="wd-video-box-off" id="video_container_oneway" style="display: none">
+                                                <div class="oneway-screen">
+                                                    <p class="oneway" id="oneWayMessage"></p>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="wd-video-box-off" id="video_container_oneway_agent" style="display: none">
+                                                <div class="wd-attention-screen" style="padding-top: 20px">
+                                                    <img src="../img/novideoaudio.png" alt="" style="border-radius: 0; margin: 0 auto; border: 1px solid #fff; background: #ececec;" />
+                                                    <p class="oneway" id="oneWayMessageAgent"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="on_hold" class="wd-on-hold" style="display: none;">
+                                            <div class="wd-avatar-agent" style="position: absolute;">
+                                                <span class="hold-img"></span>
+                                            </div>
+                                            <div class="onhold-title">
+                                                <h4>You are on hold</h4>
+                                            </div>
+                                        </div>
+                                        <div id="small_video">
+
+                                        </div>
+                                    </div>
+                                </div><!-- end of wd-video-box -->
+
+                                <div class="wd-video-box" id="wd-widget-content-video-waiting">
+
+                                    <div class="wd-loading-screen">
+                                        <p><span id="waitingToConnect">Please wait</span> <span class="loader__dot">.</span><span class="loader__dot">.</span><span class="loader__dot">.</span><br/>
+                                            <!--<a href="javascript:void(0);" id="cancel_call_button" title="Cancel the call" class="trn-link">CANCEL</a>-->
+                                            <a href="javascript:void(0)" class="trn-link-img-video disabled" title="Answer Call with Video"><span>Video</span></a>
+                                            <a href="javascript:void(0)" class="trn-link-img-audio disabled" title="Answer with Voice Only"><span>Audio</span></a>
+                                            <a href="javascript:void(0)" id="cancel_call_button" class="trn-link-img-cancel" title="Cancel Call"><span>Reject</span></a>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="wd-video-box" id="wd-widget-content-video-ringing" style="display: none">
+                                    <div class="wd-loading-screen">
+                                        <p><span id="incoming_text">Incoming call</span> <span class="loader__dot">.</span><span class="loader__dot">.</span><span class="loader__dot">.</span><br/>
+                                            <a href="javascript:void(0)" id="answer_call_button" class="trn-link-img-video" title="Answer Call with Video"><span>Video</span></a>
+                                            <a href="javascript:void(0)" id="answer_audiocall_button" class="trn-link-img-audio" title="Answer with Voice Only"><span>Audio</span></a>
+                                            <a href="javascript:void(0)" id="reject_call_button" class="trn-link-img-reject" title="Reject Call"><span>Reject</span></a>
+                                        </p>
+                                    </div>
+
+                                </div>
+
+                                <div class="wd-video-box" id="unsupported_div"  style="display: none">
+                                    <div class="wd-video-c">
+                                        <a href="javascript:void(0)" class="wd-v-text trn-link" style="display:none" title="">
+                                            <div class="swipe_text">chat<br/>screen</div>
+                                            <div class="new_chat_badge_container" style="display:none">
+                                                <span class="new_chat_badge" >&nbsp;</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="wd-video-box-off" id="unsupported_browser">
+                                        <div class="wd-attention-screen" style="padding-top: 20px">
+                                            <p>Unsupported Browser</p>
+                                            <span id="not_supported"></span>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="wd-video-box" id="wd-widget-error">
+                                    <div class="wd-video-box-off" >
+
+                                        <div class="wd-attention-screen" id="permission_browsers_error">
+                                            <div style="padding: auto; display: none" id="permission_div_error_chrome"><img src="../img/permission_error_chrome.png" class="permission_error_image"></div>
+                                            <div style="padding: auto; display: none" id="permission_div_error_firefox"><img src="../img/permission_error_firefox.png" class="permission_error_image"></div>
+
+                                        </div>
+
+                                        <div class="wd-video-c" style="display: none">
+                                            <!--<a href="javascript:void(0)" class="wd-v-video trn-link" title=""></a>-->
+                                            <!--<a href="javascript:void(0)" class="wd-v-sound trn-link" title=""></a>-->
+                                            <a href="javascript:void(0)" class="wd-v-text trn-link" style="display:none" title="">
+                                                <div class="swipe_text">chat<br/>screen</div>
+                                                <div class="new_chat_badge_container" style="display:none">
+                                                    <span class="new_chat_badge" >&nbsp;</span>
+                                                </div>
+                                            </a>
+                                            <a href="javascript:void(0)" id="callAudioButton_4" class="wd-v-pickupaudio trn-link" title="Call with Voice Only"><span></span></a>
+                                            <a href="javascript:void(0)" id="callButton_4" class="wd-v-pickup trn-link" title="Call with Video"><span></span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="wd-video-box" id="permission_div"  style="display: none">
+
+                                    <div class="wd-video-box-off" >
+
+                                        <div class="wd-attention-screen" id="permission_browsers">
+                                            <span id="permission_div_span" style="margin: 5px;"></span>
+                                            <div style="padding: auto; display: none" id="permission_div_ie"><img src="../img/permission_ie.png" class="permission_image"></div>
+                                            <div style="padding: auto; display: none" id="permission_div_safari"><img src="../img/permission_firefox.png" class="permission_image"></div>
+                                            <div style="padding: auto; display: none" id="permission_div_chrome"><img src="../img/permission_chrome.png" class="permission_image"></div>
+                                            <div style="padding: auto; display: none" id="permission_div_chromevideo"><img src="../img/permission_chrome_video.png" class="permission_image"></div>
+                                            <div style="padding: auto; display: none" id="permission_div_firefox"><img src="../img/permission_firefox.png" class="permission_image"></div>
+                                            <div style="padding: auto; display: none" id="permission_div_firefoxvideo"><img src="../img/permission_firefox_video.png" class="permission_image"></div>
+                                            <div style="padding: auto; display: none" id="permission_div_default"><img src="../img/permission_chrome.png" class="permission_image"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="wd-video-box" id="wd-widget-content-chat-main" style="display: none">
+                                    <div class="wd-video-c">
+                                        <div class="control-ss" id="plugin_messagebc" style="display: none">
+                                            <a href="javascript:void(0);" title="" class="close-but-wd-small"><span></span></a>
+                                            <span class="arrow-dr"></span>
+                                            <span id="enableScreenSharebc">You have to install Chrome extension to enable screen sharing from <a id="screensharelink" href="https://chrome.google.com/webstore/detail/nphkdpfdiidjglfcplkpkdjpdlpmkdpg" target="_blank">Google Webstore</a>.</span>
+                                        </div>
+                                        <a href="javascript:void(0);" class="wd-v-share trn-link" title="Start a ScreenShare Session" style="display:none"></a>
+                                        <a href="javascript:void(0);" class="wd-v-stopshare trn-link" title="Stop Screen Sharing" style="display:none"></a>
+                                        <a href="javascript:void(0);" class="wd-v-recording recording-off trn-link" title="Recording" style="display: none;"></a>
+                                        <div class="control-recording" id="recording_message" style="display: none">
+                                            <a href="javascript:void(0);" title="" class="close-but-wd-small"><span></span></a>
+                                            <span class="arrow-dr"></span>
+                                            <a class="recordinglink" href="" target="_blank">Click to download</a>
+                                        </div>
+                                        <a href="javascript:void(0)" class="wd-v-text trn-link" style="display:none" title="">
+                                            <div class="swipe_text">chat<br/>screen</div>
+                                            <div class="new_chat_badge_container" style="display:none">
+                                                <span class="new_chat_badge" >&nbsp;</span>
+                                            </div>
+                                        </a>
+                                        <a href="javascript:void(0)" id="callAudioButton_1" class="wd-v-pickupaudio trn-link" title="Call with Voice Only"><span></span></a>
+                                        <a href="javascript:void(0)" id="callButton_1" class="wd-v-pickup trn-link" title="Call with Video"><span></span></a>
+                                        <a href="javascript:void(0);" id="hangupBroadcastButton" class="wd-v-hangup trn-link delay" title="Hangup" style="display: none;"><span></span></a>
+                                    </div>
+                                    <div class="wd-avatar-agent"><img class="peer_avatar" alt=""></div>
+                                    <div id="video_container_chat" class="video_container" style="display: none;">
+                                        <img class="recordingIcon" src="../img/recording.png" style="display:none" />
+                                        <video id="remoteScreenChat" class="sourcescreen" autoplay="autoplay" muted="muted" playsinline 
+                                               style="background:transparent; background-size:100%; display: none"></video>
+
+                                    </div>
+                                    <div id="private_message" class="wd-attention-screen" style="padding-top: 20px; display: none; text-align: center; position: absolute; top: 200px; left: 50px"></div>
+                                </div>
+                                <div class="wd-video-box" id="wd-widget-content-whiteboard" style="display: none">
+                                    <div class="wd-video-c">
+                                        <a href="javascript:void(0)" class="wd-v-text trn-link" style="display:none" title="">
+                                            <div class="swipe_text">chat<br/>screen</div>
+                                            <div class="new_chat_badge_container" style="display:none">
+                                                <span class="new_chat_badge" >&nbsp;</span>
+                                            </div>
+                                        </a>
+                                        <a href="javascript:void(0)" class="wd-v-tovideo trn-link" id="toVideo" style="display:none" title="">
+                                            <div class="swipe_text_video">video<br/>screen</div>
+                                        </a>
+                                        <a href="javascript:void(0);" id="cleanCanvas" class="wd-v-clearcanvas trn-link" style="display: none;" title="Clear Canvas"></a>
+
+                                    </div>
+                                    <div id="whiteboard_canvas">
+
+                                    </div>
+                                    <div id="whiteboard_video">
+
+                                    </div>
+                                </div>
+                                <div class="wd-video-box" id="wd-widget-content-greenroom" style="display: none">
+                                    <div id="popup_widget_text_videos">
+                                        <form class="sky-form">
+                                            <header id="chooseVideoAudio"></header>
+                                            <fieldset>
+                                                <div class="row">
+                                                    <section class="videoPreviewDiv" >
+                                                        <video id="videoPreview" autoplay="autoplay" playsinline></video>
+                                                    </section>
+                                                </div>
+                                            </fieldset>
+                                            <fieldset>
+                                                <section >
+                                                    <label class="select">
+                                                        <i class="icon-prepend icon-camera"></i>
+                                                        <select id="videoSource"></select>
+                                                        <i class="drop"></i>
+                                                    </label>
+                                                </section>
+                                                <div class="row">
+
+
+                                                    <section class="col col-6">
+
+                                                        <label class="select">
+                                                            <i class="icon-prepend icon-microphone"></i>
+                                                            <select id="audioSource" ></select>
+                                                            <i class="drop"></i>
+                                                        </label>
+                                                        <!--                                    <span id="speakTestMic">Speak to test your mic.</span>
+                                                                                            <canvas  id="testAudioCanvas"></canvas>-->
+                                                    </section>
+
+                                                    <section class="col col-6">
+                                                        <label class="select">
+                                                            <i class="icon-prepend icon-headphones"></i>
+                                                            <select id="audioOutput"></select>
+                                                            <i class="drop"></i>
+                                                        </label>
+                                                        <!--Test speakers-->
+                                                    </section>
+                                                </div>
+                                            </fieldset>
+                                            <footer>
+                                                <button type="button" id="startVideoButton" class="button">Continue with Call</button>
+                                            </footer>
+                                        </form>
+                                    </div>
+                                </div><!-- end of wd-chat-box -->
+                            </div>
+                            <div class="wd-chat-box">
+                                <div class="box-header with-border">
+                                    <img class="dw-chat-avatar" />
+                                    <div class="box-title">
+                                        <span id="peer_name_chat"></span>
+
+                                        <div id="nd_widget_visitors" style="display: none">
+                                            <div class="control-visitors">
+                                                <ul id="visitors"></ul>
+                                                <div class="rlt-of clearfix"  id="visitor_message" style="display:none;">
+                                                    <span id="send_message_to"></span>
+                                                    <div class="box-footer-private">
+                                                        <div contenteditable="true" class="direct-chat-text-private" id="private_message_small"></div>
+                                                        <button id="private_message_button" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="header-auido-video" id="exitmeeting_div" style="display: none;">
+
+                                        <img src="../img/exit.png" class="dw-audio-video" title="Exit meeting" id="exit_meeting" />
+                                    </div>
+                                    <div class="header-auido-video" id="call_audio_video" style="display:none;">
+
+                                        <img src="../img/video_call.png" class="dw-audio-video" title="Call with Video" id="call_video" />
+                                        <img src="../img/audio_call.png" class="dw-audio-video" title="Call with Voice Only" id="call_audio" />
+                                    </div>
+                                    <div class="header-auido-video" id="slide_video" style="display:none;" >
+                                        <img src="../img/swipe_left.png" class="dw-slide" id="swipe_left" /><span class="swipe_text_video">video<br/> screen</span>
+                                    </div> 
+                                    <div class="header-auido-video" style="padding-right:5px;">
+                                        <img src="../img/file_transfer.png" class="dw-audio-video" title="Send a File" id="file_transfer" />
+                                    </div>
+                                    <div class="header-auido-video" id="screenshare_div" style="display: none;">
+                                        <img src="../img/screenshare.png" class="dw-audio-video" title="Start a ScreenShare Session" id="startscreenshare" />
+                                    </div>
+                                    <div class="header-auido-video" id="screensharestop_div" style="display: none;">
+                                        <img src="../img/screensharestop.png" class="dw-audio-video" title="Stop a ScreenShare Session" id="stopscreenshare" />
+                                    </div>
+                                    <div class="header-auido-video" id="whiteboard_div" style="display: none;">
+                                        <img src="../img/whiteboard.png" class="dw-audio-video" title="Whiteboard" id="whiteboard" />
+                                    </div>
+                                    <div class="header-auido-video" id="raisehand_div" style="display: none;">
+                                        <img src="../img/raisehand.png" class="dw-audio-video" title="Raise Hand" id="raisehand" />
+                                    </div>
+                                </div>
+                                <ul id="newdev_chat_ul1" class="direct-chat-messages"></ul>
+                                <!-- /.box-body -->
+
+                                <div class="box-footer">
+                                    <div contenteditable="true" class="direct-chat-text" id="newdev_chat_message1"></div>
+                                    <button id="newdev_chat_button1" />
+
+                                </div>
+
+                            </div>
+
+                            <!-- end of wd-widget-content -->
+
+                        </div><!-- end of screen-wd-bg -->
+
+                    </div>
+                    <input type="file" name="files" id="filetransfer" />
+                    <div id="dialog_confirm" title="" style="display:none; z-index:999999">
+                        <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span><span id="dialog_text"></span></p>
+                    </div>
+                    <!-- ##################### START CALL MODAL WINDOWS ################################# -->
+
+
+
+
+
+
+
+
+                </div>
+                <div class="login-wd" id="ng_info" style="display: none">
+                    <div class="login-wd-bg">
+                        <h1 class="login-wd-title">Please fill in the name field below:</h1>
+
+                        <div class="gray-modal-bg clearfix">
+                            <div class="modal-left-s">
+                                <input type="text" class="f-wd-i" name="ng_caller_name" id="ng_caller_name" placeholder="Name"/>
+                                <input type="text" class="s-wd-i" name="ng_caller_email" id="ng_caller_email" placeholder="E-mail" style="display: none;"/>
+                                <input type="text" class="f-wd-i" name="ng_caller_avatar" id="ng_caller_avatar" placeholder="Avatar" style="display: none;"/>
+                                <input type="password" class="f-wd-i" name="ng_password" id="ng_password" placeholder="Password" style="display: none;"/>
+                                <button id="continue-button" class="finish-form">Continue</button>
+                            </div>
+                        </div>
+                        <!--                        <div class="wd-connect-with clearfix" id="sso_logins" style="display:none">
+                                                    <p>Or connect with:</p>
+                                                    <ul>
+                                                        <li><a href="javascript:void(0);" onclick="onSsoClick('ln')" class="wd-conn1" title=""></a></li>
+                                                        <li><a href="javascript:void(0);" onclick="onSsoClick('fb')" class="wd-conn2" title=""></a></li>
+                                                        <li><a href="javascript:void(0);" onclick="onSsoClick('g+')" class="wd-conn3" title=""></a></li>
+                                                    </ul>
+                                                </div>-->
+                    </div>
+                </div>
+                <div class="login-wd" id="feedback_form" style="top:100px; display: none;">
+                    <div class="login-wd-bg">
+                        <h1 class="feedback-title">Please rate the video call:</h1>
+
+                        <div class="gray-modal-bg clearfix">
+                            <div class="modal-left-s" id="feedback">
+                                <input type="range" value="0" step="0.5" id="backing5">
+                                <div id="ratestars" class="rateit" data-rateit-backingfld="#backing5" data-rateit-resetable="false"  data-rateit-min="0" data-rateit-max="5">
+                                </div>
+                                <br/>
+                                <textarea cols=35 rows="10" id="feedback_message"></textarea>
+                                <button id="feedback-button" class="finish-form">Rate</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

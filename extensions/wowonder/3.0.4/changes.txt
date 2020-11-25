@@ -1,0 +1,21 @@
+htaccess.txt
+index.php
+Integration guide.txt
+nginx.conf
+wowonder_livesmart.sql
+.htaccess
+ajax_loading.php
+admin-panel/pages/live/content.phtml
+assets/init.php
+assets/includes/functions_one.php
+assets/includes/livesmart.php
+sources/livesmartvideo.php
+themes/sunshine/layout/chat/chat-tab.phtml
+themes/sunshine/layout/livesmartvideo/content.phtml
+themes/sunshine/layout/messages/content.phtml
+themes/sunshine/layout/sidebar/left-sidebar.phtml
+themes/wowonder/layout/chat/chat-tab.phtml
+themes/wowonder/layout/livesmartvideo/content.phtml
+themes/wowonder/layout/messages/content.phtml
+themes/wowonder/layout/setting/user-setting-sidebar.phtml
+themes/wowonder/layout/sidebar/left-sidebar.phtml

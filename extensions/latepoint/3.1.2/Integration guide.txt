@@ -1,0 +1,20 @@
+﻿Integration Guide for LatePoint 6.33
+
+1) Prerequisites
+
+- Make sure you have installed and activated LiveSmart Video Chat
+
+- More information about LiveSmart installation you can find here:
+https://www.new-dev.com/page/ident/live_smart_video_chat_installation
+
+- Make sure you have installed LatePoint from 
+https://codecanyon.net/item/latepoint-appointment-booking-reservation-plugin-for-wordpress/22792692
+
+- After WordPress, LatePoint and LiveSmart installation, go to WordPress admin panel and in plugin section find and install LiveSmart WordPress plugin.
+
+
+2) Integration
+
+- Once you have installed both systems, you can do a backup of your LatePoint files. Then go and replace your wp-content/plugins/latepoint with /extensions/latepoint/6.33 from your LiveSmart folders. You can see changed files in changes.txt
+
+- Email me at info@new-dev.com if you find difficulties with the integration and setup process.

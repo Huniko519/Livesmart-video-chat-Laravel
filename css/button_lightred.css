@@ -1,0 +1,163 @@
+/* customize the design of the widget button */
+
+.nd-widget-container .clearfix {
+    display: block;
+}
+
+.nd-widget-container img {
+    border: none;
+}
+
+.nd-widget-container ul {
+    list-style: none;
+}
+
+.nd-widget-container a {
+    text-decoration: none !important;
+    cursor: pointer !important;
+}
+
+.nd-widget-container a:hover {
+}
+
+.nd-widget-container p {
+    margin: auto;
+}
+
+.newdev_widget_div {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.newdev_widget_msg {
+    color:#ffffff;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #b23e35;
+}
+
+.widget-but {
+    position: relative;
+    display: block;
+    /*height: 30px;*/
+    line-height: 30px;
+    -moz-box-shadow:inset 0px 1px 0px 0px #f7c5c0;
+    -webkit-box-shadow:inset 0px 1px 0px 0px #f7c5c0;
+    box-shadow:inset 0px 1px 0px 0px #f7c5c0;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #fc8d83), color-stop(1, #e4685d));
+    background:-moz-linear-gradient(top, #fc8d83 5%, #e4685d 100%);
+    background:-webkit-linear-gradient(top, #fc8d83 5%, #e4685d 100%);
+    background:-o-linear-gradient(top, #fc8d83 5%, #e4685d 100%);
+    background:-ms-linear-gradient(top, #fc8d83 5%, #e4685d 100%);
+    background:linear-gradient(to bottom, #fc8d83 5%, #e4685d 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fc8d83', endColorstr='#e4685d',GradientType=0);
+    background-color:#fc8d83;
+    -moz-border-radius:6px;
+    -webkit-border-radius:6px;
+    border-radius:6px;
+    border:1px solid #d83526;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:6px 14px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #b23e35;
+}
+.widget-but:hover {
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e4685d), color-stop(1, #fc8d83));
+    background:-moz-linear-gradient(top, #e4685d 5%, #fc8d83 100%);
+    background:-webkit-linear-gradient(top, #e4685d 5%, #fc8d83 100%);
+    background:-o-linear-gradient(top, #e4685d 5%, #fc8d83 100%);
+    background:-ms-linear-gradient(top, #e4685d 5%, #fc8d83 100%);
+    background:linear-gradient(to bottom, #e4685d 5%, #fc8d83 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e4685d', endColorstr='#fc8d83',GradientType=0);
+    background-color:#e4685d;
+}
+.widget-but:active {
+    position:relative;
+    top:1px;
+}
+
+.icon-bnt {
+    width: 22px;
+    height: 30px;
+    float: left;
+    margin-right: 5px;
+    background: url(../img/icon-but.png) no-repeat center;
+}
+
+.online-bnt {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 16px;
+    height: 16px;
+    background: url(../img/online.png) no-repeat;
+}
+
+.offline-bnt {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 16px;
+    height: 16px;
+    background: url(../img/offline.png) no-repeat;
+}
+
+#widget_tooltip_container {
+    position: absolute;
+    width: 150px;
+    z-index: 999999;
+}
+
+
+.modal-left-s {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: normal;
+    text-shadow: none;
+    color: #000;
+    -webkit-border-radius: 2px;
+    -khtml-border-radius: 2px;
+    border-radius: 2px;
+    border:1px solid #f5f5f5;
+    width: 150px;
+    padding: 12px;
+    background-color: #fff;
+}
+
+.modal-left-s p {
+    padding: 5px;
+    font-size: 12px;
+}
+
+.modal-left-s button {
+    -webkit-border-radius: 8px;
+    -khtml-border-radius: 8px;
+    border-radius: 8px;
+    width: 100px;
+    height: 30px;
+    display: block;
+    border: none;
+    background-color: #484d75;
+    color: #fff;
+    margin: 5px 22px;
+    cursor: pointer;
+}
+
+.modal-left-s textarea {
+    -webkit-border-radius: 8px;
+    -khtml-border-radius: 8px;
+    border-radius: 8px;
+    background: #f5f5f5;
+    width: 150px;
+    height: 60px;
+    color: #000;
+    border:1px solid #3866a3;
+    font-size: 10px;
+    padding: 2px;
+}

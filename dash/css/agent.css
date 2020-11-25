@@ -1,0 +1,199 @@
+body {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 14px !important;
+    background-color: #f1f2f4;
+}
+
+.messages {
+    background: white;
+    padding: 10px;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    max-width:100%;
+}
+.messages > p {
+    font-size: 13px;
+    margin: 0 0 0.2rem 0;
+    word-wrap: break-word
+}
+.messages > time {
+    font-size: 11px;
+    color: #ccc;
+}
+
+#visitors {
+    padding-top: 60px;
+}
+
+#statusbar {
+    display: none; 
+    min-width: 250px; 
+    margin-left: -125px; 
+    background-color: #484d75;
+    color: #fff; 
+    text-align: center; 
+    border-radius: 2px;
+    padding: 16px; 
+    position: fixed;
+    z-index: 1; 
+    right: 0; 
+    top: 110px;
+}
+
+.divGenerate {
+    background-color: #fff;
+    font-size: 12px;
+    float: right;
+    padding: 5px;
+}
+
+.divGenerate input {
+    outline: none;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -khtml-border-radius: 4px;
+    border-radius: 4px;
+    background: #f5f5f5;
+    width: 120px;
+    height: 30px;
+    border: 1px solid #ffffff;
+    color: #404040;
+    font-size: 13px;
+    padding: 0 5px ;
+}
+.divGenerate select {
+    outline: none;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -khtml-border-radius: 4px;
+    border-radius: 4px;
+    background: #f5f5f5;
+    width: 120px;
+    height: 30px;
+    border: 1px solid #ffffff;
+    color: #404040;
+    font-size: 13px;
+    padding: 0 5px ;
+}
+
+.divGenerate input[type=text]:focus {
+    border: 1px solid #484d75;
+}
+
+.divGenerate select:focus {
+    border: 1px solid #484d75;
+}
+
+.generateButton {
+    -moz-box-shadow:inset 0px 1px 3px 0px #91b8b3;
+    -webkit-box-shadow:inset 0px 1px 3px 0px #91b8b3;
+    box-shadow:inset 0px 1px 3px 0px #91b8b3;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #768d87), color-stop(1, #6c7c7c));
+    background:-moz-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+    background:-webkit-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+    background:-o-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+    background:-ms-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+    background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#768d87', endColorstr='#6c7c7c',GradientType=0);
+    background-color:#768d87;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    border:1px solid #566963;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff !important;
+    font-family:Arial;
+    font-size:14px;
+    font-weight:bold;
+    padding:6px 15px;
+    text-decoration:none;
+    text-shadow:0px -1px 0px #2b665e;
+    float: right;
+    margin-left: 2px;
+}
+.generateButton:hover {
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #6c7c7c), color-stop(1, #768d87));
+    background:-moz-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+    background:-webkit-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+    background:-o-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+    background:-ms-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+    background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#6c7c7c', endColorstr='#768d87',GradientType=0);
+    background-color:#6c7c7c;
+}
+.generateButton:active {
+    position:relative;
+    top:1px;
+}
+
+
+#login-form {
+    width: 300px;
+    height: 250px;
+    margin: 0 auto 60px;
+    padding: 10px 20px;
+    background-color: #FFF;
+    border-radius: 4px;
+    border: #333 1px solid;
+
+}
+
+.frm-field {
+    padding-top: 20px;
+}
+
+#error{
+    color: #B24926;
+    margin-left:15px;
+}
+
+table {
+    font-size: 14px !important;
+}
+
+.logininput {
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 250px;
+    border-radius: 4px;
+    border: #A0A0A0 1px solid;
+}
+
+.welcome {
+    font-size: 13px;
+    float: right;
+    z-index: 999999999;
+}
+
+#tabs {
+    top: 20px;
+}
+
+#statusOk {
+    color: green;
+}
+
+#statusNotOk {
+    color: red;
+}
+
+@-webkit-keyframes fadein {
+    from {right: 0; opacity: 0;} 
+    to {top: 90px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {right: 0; opacity: 0;}
+    to {top: 90px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {top: 90px; opacity: 1;} 
+    to {right: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {top: 90px; opacity: 1;}
+    to {right: 0; opacity: 0;}
+}
